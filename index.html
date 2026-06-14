@@ -103,42 +103,24 @@
     </div>
 
     <script>
-        // Hiệu ứng "Hacker" dịch mã nhảy số liên tục cho IP và Port
+        // Hiệu ứng "Hacker" nhảy số liên tục không bao giờ dừng (Giấu IP/Port thật)
         const letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*";
         const targets = document.querySelectorAll('.hacker-text');
 
-        function scramble(element) {
-            let iterations = 0;
-            const originalText = element.dataset.value;
+        function scrambleForever(element) {
+            const length = element.dataset.value.length;
             
-            clearInterval(element.interval);
-            
-            element.interval = setInterval(() => {
-                element.innerText = originalText.split("").map((letter, index) => {
-                    if(index < iterations) {
-                        return originalText[index]; // Ký tự đã giải mã
-                    }
-                    // Ký tự đang bị nhảy loạn
-                    return letters[Math.floor(Math.random() * letters.length)];
-                }).join("");
-                
-                if(iterations >= originalText.length) {
-                    clearInterval(element.interval);
+            setInterval(() => {
+                let randomText = "";
+                for (let i = 0; i < length; i++) {
+                    randomText += letters[Math.floor(Math.random() * letters.length)];
                 }
-                
-                iterations += 1 / 2; // Tốc độ giải mã
-            }, 30);
+                element.innerText = randomText;
+            }, 40); // Tốc độ nhảy số cực nhanh
         }
 
         targets.forEach(target => {
-            // Chạy hiệu ứng khi tải trang
-            setTimeout(() => scramble(target), 500);
-            
-            // Cứ mỗi 5 giây lại chạy lại hiệu ứng 1 lần
-            setInterval(() => scramble(target), 5000);
-            
-            // Hoặc chạy hiệu ứng khi đưa chuột vào
-            target.addEventListener('mouseover', () => scramble(target));
+            scrambleForever(target);
         });
     </script>
 </body>

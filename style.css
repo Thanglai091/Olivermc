@@ -186,19 +186,20 @@ body {
 .orbit-ring-rotate {
     width: 100%; height: 100%;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-top: 1px solid rgba(168, 85, 247, 0.5); /* Tia sáng mờ */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid rgba(168, 85, 247, 1);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.6), inset 0 0 15px rgba(59, 130, 246, 0.4);
     animation: orbitSpin 3s linear infinite;
     position: relative;
 }
 
 .orbit-moon {
     position: absolute;
-    top: -4px; left: 50%;
-    width: 8px; height: 8px;
+    top: -5px; left: 50%;
+    width: 10px; height: 10px;
     background: #fff;
     border-radius: 50%;
-    box-shadow: 0 0 15px 5px #a855f7, 0 0 30px 10px #3b82f6;
+    box-shadow: 0 0 20px 8px #a855f7, 0 0 40px 15px #3b82f6;
     transform: translateX(-50%);
 }
 
@@ -326,55 +327,30 @@ body {
     z-index: 1;
 }
 
-.border-runner {
-    background: transparent;
+/* --- Aurora Button --- */
+.btn-aurora {
+    background: linear-gradient(45deg, #a855f7, #3b82f6, #10b981, #a855f7);
+    background-size: 300% 300%;
     color: #fff;
-    overflow: hidden;
+    border: none;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    animation: aurora-btn-anim 4s ease infinite;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-.border-runner::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%; 
-    width: 300px; height: 300px;
-    margin-top: -150px; margin-left: -150px;
-    background: conic-gradient(
-        from 0deg,
-        transparent 0%, 
-        transparent 70%, 
-        #a855f7 80%, 
-        #3b82f6 90%, 
-        #10b981 100%
-    );
-    animation: spin-runner 2s linear infinite;
-    z-index: -2;
+.btn-aurora:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6);
 }
 
-.border-runner::after {
-    content: '';
-    position: absolute;
-    top: 2px; left: 2px; right: 2px; bottom: 2px;
-    background: #0f172a;
-    border-radius: 10px;
-    z-index: -1;
-    transition: background 0.3s;
+.btn-aurora:active {
+    transform: translateY(0) scale(1);
 }
 
-.border-runner:hover::after {
-    background: rgba(15, 23, 42, 0.7); /* Sáng lên chút khi hover */
-}
-
-.border-runner:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px -10px #3b82f6;
-}
-
-.border-runner:active {
-    transform: translateY(0);
-}
-
-@keyframes spin-runner {
-    100% { transform: rotate(360deg); }
+@keyframes aurora-btn-anim {
+    0% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+    50% { background-position: 100% 50%; box-shadow: 0 0 25px rgba(16, 185, 129, 0.6); }
+    100% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
 }
 
 .btn-secondary {

@@ -34,7 +34,7 @@
         <div class="aurora-blob aurora-3"></div>
     </div>
     
-    <!-- Floating Stars Overlay -->
+    <!-- Floating Moving Stars Overlay -->
     <div class="stars-overlay"></div>
 
     <div class="container">
@@ -45,6 +45,13 @@
             </div>
 
             <div class="icon-wrapper">
+                <!-- Orbiting Moon / Ring Effect -->
+                <div class="orbit-container">
+                    <div class="orbit-ring-rotate">
+                        <div class="orbit-moon"></div>
+                    </div>
+                </div>
+                <!-- Minecraft Icon -->
                 <svg class="mc-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2.5L2.5 7.5L12 12.5L21.5 7.5L12 2.5Z" fill="url(#topGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" stroke-linejoin="round"/>
                     <path d="M2.5 7.5V17L12 22V12.5L2.5 7.5Z" fill="url(#leftGrad)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-linejoin="round"/>
@@ -66,23 +73,23 @@
                 </svg>
             </div>
             
-            <h1 class="main-title">OLIVER <span class="highlight">NETWORK</span></h1>
+            <h1 class="main-title aurora-text-animate">OLIVER NETWORK</h1>
             <p class="description">Khám phá thế giới sinh tồn vô tận với những tính năng độc quyền. Nơi bắt đầu những huyền thoại Minecraft Bedrock!</p>
             
             <div class="info-dashboard">
                 <div class="info-card">
                     <span class="info-label">IP ADDRESS</span>
-                    <span class="info-value pixel-font">103.116.52.8</span>
+                    <span class="info-value pixel-font hacker-text aurora-text-animate" data-value="103.116.52.8">103.116.52.8</span>
                 </div>
                 <div class="info-divider"></div>
                 <div class="info-card">
                     <span class="info-label">PORT</span>
-                    <span class="info-value pixel-font">19132</span>
+                    <span class="info-value pixel-font hacker-text aurora-text-animate" data-value="19132">19132</span>
                 </div>
             </div>
 
             <div class="action-group">
-                <a href="minecraft://?addExternalServer=Oliver|103.116.52.8:19132" class="btn btn-primary">
+                <a href="minecraft://?addExternalServer=Oliver|103.116.52.8:19132" class="btn btn-primary border-runner">
                     <span class="btn-text">🎮 CHƠI NGAY</span>
                 </a>
                 
@@ -94,5 +101,45 @@
             <p class="footer-note">Yêu cầu Minecraft Bedrock Edition (Windows 10/11, iOS, Android)</p>
         </div>
     </div>
+
+    <script>
+        // Hiệu ứng "Hacker" dịch mã nhảy số liên tục cho IP và Port
+        const letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*";
+        const targets = document.querySelectorAll('.hacker-text');
+
+        function scramble(element) {
+            let iterations = 0;
+            const originalText = element.dataset.value;
+            
+            clearInterval(element.interval);
+            
+            element.interval = setInterval(() => {
+                element.innerText = originalText.split("").map((letter, index) => {
+                    if(index < iterations) {
+                        return originalText[index]; // Ký tự đã giải mã
+                    }
+                    // Ký tự đang bị nhảy loạn
+                    return letters[Math.floor(Math.random() * letters.length)];
+                }).join("");
+                
+                if(iterations >= originalText.length) {
+                    clearInterval(element.interval);
+                }
+                
+                iterations += 1 / 2; // Tốc độ giải mã
+            }, 30);
+        }
+
+        targets.forEach(target => {
+            // Chạy hiệu ứng khi tải trang
+            setTimeout(() => scramble(target), 500);
+            
+            // Cứ mỗi 5 giây lại chạy lại hiệu ứng 1 lần
+            setInterval(() => scramble(target), 5000);
+            
+            // Hoặc chạy hiệu ứng khi đưa chuột vào
+            target.addEventListener('mouseover', () => scramble(target));
+        });
+    </script>
 </body>
 </html>

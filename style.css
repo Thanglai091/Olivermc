@@ -30,7 +30,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* Deep Aurora Background */
+/* --- Aurora Background --- */
 .aurora-container {
     position: absolute;
     width: 100vw;
@@ -49,29 +49,23 @@ body {
 }
 
 .aurora-1 {
-    width: 60vw;
-    height: 60vw;
+    width: 60vw; height: 60vw;
     background: rgba(139, 92, 246, 0.4);
-    top: -20%;
-    left: -10%;
+    top: -20%; left: -10%;
     animation-duration: 25s;
 }
 
 .aurora-2 {
-    width: 50vw;
-    height: 50vw;
+    width: 50vw; height: 50vw;
     background: rgba(14, 165, 233, 0.3);
-    bottom: -10%;
-    right: -10%;
+    bottom: -10%; right: -10%;
     animation-delay: -5s;
 }
 
 .aurora-3 {
-    width: 40vw;
-    height: 40vw;
+    width: 40vw; height: 40vw;
     background: rgba(16, 185, 129, 0.25);
-    top: 40%;
-    left: 40%;
+    top: 40%; left: 40%;
     animation-duration: 30s;
 }
 
@@ -81,13 +75,10 @@ body {
     100% { transform: translate(-10%, -10%) scale(0.9); }
 }
 
-/* Stars Background */
+/* --- Stars Background (Chuyển động) --- */
 .stars-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-image: 
         radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
         radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)),
@@ -96,8 +87,13 @@ body {
     background-repeat: repeat;
     background-size: 200px 200px;
     z-index: -1;
-    opacity: 0.3;
-    animation: twinkle 5s infinite;
+    opacity: 0.4;
+    animation: moveStars 40s linear infinite, twinkle 5s infinite;
+}
+
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: -400px 400px; } /* Làm sao chuyển động xéo */
 }
 
 @keyframes twinkle {
@@ -112,7 +108,7 @@ body {
     z-index: 10;
 }
 
-/* Premium Glass Panel */
+/* --- Premium Glass Panel --- */
 .glass-panel {
     background: rgba(15, 23, 42, 0.4);
     backdrop-filter: blur(24px);
@@ -133,11 +129,10 @@ body {
     box-shadow: 0 40px 70px -12px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.08);
 }
 
-/* Status Badge */
+/* --- Status Badge --- */
 .status-badge {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 24px; right: 24px;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 6px 12px;
@@ -148,8 +143,7 @@ body {
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     background-color: var(--color-accent);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--color-accent);
@@ -160,7 +154,6 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
     color: var(--text-muted);
 }
 
@@ -170,18 +163,54 @@ body {
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
+/* --- Orbiting Moon effect for Icon --- */
 .icon-wrapper {
     margin-top: 10px;
     margin-bottom: 24px;
     display: flex;
     justify-content: center;
+    position: relative;
+    perspective: 800px;
+}
+
+.orbit-container {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 130px; height: 130px;
+    margin-top: -65px; margin-left: -65px;
+    transform-style: preserve-3d;
+    transform: rotateX(65deg) rotateY(10deg);
+}
+
+.orbit-ring-rotate {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(168, 85, 247, 0.5); /* Tia sáng mờ */
+    animation: orbitSpin 3s linear infinite;
+    position: relative;
+}
+
+.orbit-moon {
+    position: absolute;
+    top: -4px; left: 50%;
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px #a855f7, 0 0 30px 10px #3b82f6;
+    transform: translateX(-50%);
+}
+
+@keyframes orbitSpin {
+    to { transform: rotate(360deg); }
 }
 
 .mc-icon {
-    width: 80px;
-    height: 80px;
+    width: 80px; height: 80px;
     filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.4));
     animation: float 4s infinite ease-in-out;
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes float {
@@ -189,18 +218,32 @@ body {
     50% { transform: translateY(-10px) rotate(2deg); }
 }
 
-.main-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    margin-bottom: 12px;
-}
-
-.highlight {
-    background: linear-gradient(135deg, #a855f7, #3b82f6);
+/* --- Animated Aurora Text Gradient --- */
+.aurora-text-animate {
+    background: linear-gradient(
+        to right,
+        #a855f7,
+        #3b82f6,
+        #10b981,
+        #ec4899,
+        #a855f7
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: textGradient 3s linear infinite;
+}
+
+@keyframes textGradient {
+    to { background-position: 200% center; }
+}
+
+.main-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 .description {
@@ -211,7 +254,7 @@ body {
     padding: 0 10px;
 }
 
-/* Info Dashboard */
+/* --- Info Dashboard --- */
 .info-dashboard {
     display: flex;
     background: rgba(0, 0, 0, 0.4);
@@ -226,17 +269,12 @@ body {
 .info-dashboard::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
+    top: 0; left: -100%; width: 50%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
     animation: shine 4s infinite;
 }
 
-@keyframes shine {
-    100% { left: 200%; }
-}
+@keyframes shine { 100% { left: 200%; } }
 
 .info-card {
     flex: 1;
@@ -261,8 +299,7 @@ body {
 
 .info-value {
     font-size: 1.6rem;
-    color: #fff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .action-group {
@@ -271,7 +308,7 @@ body {
     gap: 16px;
 }
 
-/* Modern Buttons */
+/* --- Border Runner Button --- */
 .btn {
     position: relative;
     display: flex;
@@ -284,42 +321,57 @@ body {
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 1px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
+    transition: transform 0.2s;
     z-index: 1;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #6366f1, #a855f7);
+.border-runner {
+    background: transparent;
     color: #fff;
-    border: none;
-    box-shadow: 0 10px 20px -10px #a855f7;
+    overflow: hidden;
 }
 
-.btn-primary::before {
+.border-runner::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #4f46e5, #9333ea);
-    opacity: 0;
-    transition: opacity 0.3s;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: conic-gradient(
+        transparent, 
+        transparent, 
+        transparent, 
+        #a855f7, 
+        #3b82f6, 
+        #10b981
+    );
+    animation: spin-runner 2s linear infinite;
+    z-index: -2;
+}
+
+.border-runner::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 2px; right: 2px; bottom: 2px; /* Độ dày viền là 2px */
+    background: #0f172a; /* Nền tối ở giữa */
+    border-radius: 10px;
     z-index: -1;
+    transition: background 0.3s;
 }
 
-.btn-primary:hover::before {
-    opacity: 1;
+.border-runner:hover::after {
+    background: rgba(15, 23, 42, 0.7); /* Sáng lên chút khi hover */
 }
 
-.btn-primary:hover {
+.border-runner:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 25px -10px #a855f7;
+    box-shadow: 0 10px 25px -10px #3b82f6;
 }
 
-.btn-primary:active {
+.border-runner:active {
     transform: translateY(0);
+}
+
+@keyframes spin-runner {
+    100% { transform: rotate(360deg); }
 }
 
 .btn-secondary {
@@ -352,31 +404,17 @@ body {
 
 /* Responsive */
 @media (max-width: 480px) {
-    .glass-panel {
-        padding: 40px 20px;
-    }
+    .glass-panel { padding: 40px 20px; }
     
     .status-badge {
-        position: relative;
-        top: 0;
-        right: 0;
-        display: inline-flex;
+        position: relative; top: 0; right: 0;
+        display: inline-flex; justify-content: center;
         margin-bottom: 24px;
-        justify-content: center;
     }
 
-    .main-title {
-        font-size: 1.8rem;
-    }
+    .main-title { font-size: 1.8rem; }
     
-    .info-dashboard {
-        flex-direction: column;
-        gap: 16px;
-    }
+    .info-dashboard { flex-direction: column; gap: 16px; }
     
-    .info-divider {
-        height: 1px;
-        width: 100%;
-        margin: 0;
-    }
+    .info-divider { height: 1px; width: 100%; margin: 0; }
 }

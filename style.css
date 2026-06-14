@@ -385,19 +385,50 @@ body {
 .intro-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(3, 0, 20, 0.95);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(3, 0, 20, 0.4); /* Trong suốt hơn để thấy cực quang */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 1.5s ease;
+    transition: opacity 1.5s ease, backdrop-filter 1.5s ease;
+}
+
+.intro-content {
+    text-align: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    animation: float-intro 4s ease-in-out infinite;
+}
+
+@keyframes float-intro {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.intro-title {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+
+.intro-subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
 }
 
 .btn-explore {
     padding: 16px 48px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     color: #fff;
@@ -454,6 +485,10 @@ body {
 
 /* Responsive */
 @media (max-width: 480px) {
+    .intro-title { font-size: 2.5rem; letter-spacing: 3px; }
+    .intro-subtitle { font-size: 0.9rem; letter-spacing: 2px; }
+    .btn-explore { padding: 12px 30px; font-size: 1.1rem; }
+    
     .glass-panel { padding: 40px 20px; }
     
     .status-badge {

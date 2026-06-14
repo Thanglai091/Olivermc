@@ -32,12 +32,6 @@
         <source src="Mcms.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Màn hình Intro: Nút Khám Phá & Sóng Xung Kích -->
-    <div id="introOverlay" class="intro-overlay">
-        <button id="btnExplore" class="btn-explore">KHÁM PHÁ</button>
-        <div id="shockwave" class="shockwave"></div>
-    </div>
-
     <!-- Deep Aurora Background -->
     <div class="aurora-container">
         <div class="aurora-blob aurora-1"></div>
@@ -47,6 +41,16 @@
     
     <!-- Floating Moving Stars Overlay -->
     <div class="stars-overlay"></div>
+
+    <!-- Màn hình Intro: Nút Khám Phá & Sóng Xung Kích -->
+    <div id="introOverlay" class="intro-overlay">
+        <div class="intro-content">
+            <h2 class="intro-title aurora-text-animate">OLIVER NETWORK</h2>
+            <p class="intro-subtitle">Minecraft Bedrock Edition</p>
+            <button id="btnExplore" class="btn-explore">KHÁM PHÁ NGAY</button>
+        </div>
+        <div id="shockwave" class="shockwave"></div>
+    </div>
 
     <div class="container" id="mainContainer" style="opacity: 0; pointer-events: none; transition: opacity 2s ease;">
         <div class="glass-panel">
@@ -149,10 +153,10 @@
             // Kích hoạt hiệu ứng sóng xung kích
             shockwave.classList.add('active');
             
-            // Ẩn nút Khám phá ngay lập tức
-            btnExplore.style.opacity = '0';
-            btnExplore.style.pointerEvents = 'none';
-
+            // Ẩn nội dung Intro ngay lập tức
+            const introContent = document.querySelector('.intro-content');
+            if(introContent) introContent.style.opacity = '0';
+            
             // Đợi sóng xung kích lan ra rồi mới hiện giao diện web chính
             setTimeout(() => {
                 introOverlay.style.opacity = '0';

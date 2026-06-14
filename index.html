@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tham gia server Oliver - Minecraft Bedrock</title>
     
-    <!-- Meta tags cơ bản -->
     <meta name="description" content="Tham gia ngay máy chủ sinh tồn cực chất với cộng đồng đông đảo, tính năng độc đáo và hàng ngàn quà tặng hấp dẫn. Nhấn để mở game và chơi ngay!">
-    <meta name="theme-color" content="#8b5cf6">
+    <meta name="theme-color" content="#a855f7">
 
-    <!-- Open Graph / Facebook / Zalo -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://olivermc.vercel.app/">
     <meta property="og:title" content="🔥 Oliver Network - Siêu Phẩm Minecraft Bedrock 🔥">
     <meta property="og:description" content="Tham gia ngay máy chủ sinh tồn cực chất với cộng đồng đông đảo, tính năng độc đáo và hàng ngàn quà tặng hấp dẫn. Nhấn để mở game và chơi ngay!">
     <meta property="og:image" content="https://olivermc.vercel.app/server9.png">
     
-    <!-- Twitter / Discord -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="🔥 Oliver Network - Siêu Phẩm Minecraft Bedrock 🔥">
     <meta name="twitter:description" content="Tham gia ngay máy chủ sinh tồn cực chất với cộng đồng đông đảo, tính năng độc đáo và hàng ngàn quà tặng hấp dẫn. Nhấn để mở game và chơi ngay!">
@@ -25,55 +24,74 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Thêm font Pixel và font hiện đại -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Aurora Background -->
-    <div class="aurora-bg"></div>
-    <div class="pixel-overlay"></div>
+    <!-- Deep Aurora Background -->
+    <div class="aurora-container">
+        <div class="aurora-blob aurora-1"></div>
+        <div class="aurora-blob aurora-2"></div>
+        <div class="aurora-blob aurora-3"></div>
+    </div>
+    
+    <!-- Floating Stars Overlay -->
+    <div class="stars-overlay"></div>
 
     <div class="container">
-        <div class="glass-card">
-            <div class="icon-container">
+        <div class="glass-panel">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span class="status-text">Server Online</span>
+            </div>
+
+            <div class="icon-wrapper">
                 <svg class="mc-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Top Face (Magenta/Purple) -->
-                    <path d="M12 2.5L2.5 7.5L12 12.5L21.5 7.5L12 2.5Z" fill="#a855f7" stroke="#9333ea" stroke-width="1" stroke-linejoin="round"/>
-                    <!-- Left Face (Blue) -->
-                    <path d="M2.5 7.5V17L12 22V12.5L2.5 7.5Z" fill="#3b82f6" stroke="#2563eb" stroke-width="1" stroke-linejoin="round"/>
-                    <!-- Right Face (Green) -->
-                    <path d="M21.5 7.5V17L12 22V12.5L21.5 7.5Z" fill="#10b981" stroke="#059669" stroke-width="1" stroke-linejoin="round"/>
+                    <path d="M12 2.5L2.5 7.5L12 12.5L21.5 7.5L12 2.5Z" fill="url(#topGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" stroke-linejoin="round"/>
+                    <path d="M2.5 7.5V17L12 22V12.5L2.5 7.5Z" fill="url(#leftGrad)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-linejoin="round"/>
+                    <path d="M21.5 7.5V17L12 22V12.5L21.5 7.5Z" fill="url(#rightGrad)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="topGrad" x1="12" y1="2.5" x2="12" y2="12.5" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#c084fc"/>
+                            <stop offset="1" stop-color="#7e22ce"/>
+                        </linearGradient>
+                        <linearGradient id="leftGrad" x1="2.5" y1="7.5" x2="12" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#3b82f6"/>
+                            <stop offset="1" stop-color="#1d4ed8"/>
+                        </linearGradient>
+                        <linearGradient id="rightGrad" x1="21.5" y1="7.5" x2="12" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#10b981"/>
+                            <stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                    </defs>
                 </svg>
             </div>
             
-            <h1 class="title pixel-text">SERVER <br><span class="gradient-text">OLIVER</span></h1>
-            <p class="subtitle">Khám phá thế giới Minecraft Bedrock với cực quang rực rỡ và những khối pixel đầy sắc màu. Tham gia cùng chúng tôi ngay hôm nay!</p>
+            <h1 class="main-title">OLIVER <span class="highlight">NETWORK</span></h1>
+            <p class="description">Khám phá thế giới sinh tồn vô tận với những tính năng độc quyền. Nơi bắt đầu những huyền thoại Minecraft Bedrock!</p>
             
-            <div class="server-details pixel-border">
-                <div class="detail-box">
-                    <span class="detail-label">IP ADDRESS</span>
-                    <span class="detail-value pixel-text" id="ip-address">103.116.52.8</span>
+            <div class="info-dashboard">
+                <div class="info-card">
+                    <span class="info-label">IP ADDRESS</span>
+                    <span class="info-value pixel-font">103.116.52.8</span>
                 </div>
-                <div class="divider"></div>
-                <div class="detail-box">
-                    <span class="detail-label">PORT</span>
-                    <span class="detail-value pixel-text">19132</span>
+                <div class="info-divider"></div>
+                <div class="info-card">
+                    <span class="info-label">PORT</span>
+                    <span class="info-value pixel-font">19132</span>
                 </div>
             </div>
 
-            <div class="action-buttons">
-                <!-- Nút tham gia Game -->
-                <a href="minecraft://?addExternalServer=Oliver|103.116.52.8:19132" class="pixel-btn primary-btn">
-                    <span class="btn-text">🚀 CHƠI NGAY</span>
+            <div class="action-group">
+                <a href="minecraft://?addExternalServer=Oliver|103.116.52.8:19132" class="btn btn-primary">
+                    <span class="btn-text">🎮 CHƠI NGAY</span>
                 </a>
                 
-                <!-- Nút tham gia Box Chat -->
-                <a href="https://m.me/j/AbZ5twD4V8m28DGB/?send_source=gc%3Acopy_invite_link_c" target="_blank" class="pixel-btn secondary-btn">
-                    <span class="btn-text">💬 BOX CHAT</span>
+                <a href="https://m.me/j/AbZ5twD4V8m28DGB/?send_source=gc%3Acopy_invite_link_c" target="_blank" class="btn btn-secondary">
+                    <span class="btn-text">💬 THAM GIA BOX CHAT</span>
                 </a>
             </div>
             
-            <p class="note">Cần cài sẵn Minecraft Bedrock để nút "Chơi Ngay" hoạt động.</p>
+            <p class="footer-note">Yêu cầu Minecraft Bedrock Edition (Windows 10/11, iOS, Android)</p>
         </div>
     </div>
 </body>

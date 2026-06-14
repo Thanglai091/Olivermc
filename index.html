@@ -92,14 +92,16 @@
             <p class="description">Khám phá thế giới sinh tồn vô tận với những tính năng độc quyền. Nơi bắt đầu những huyền thoại Minecraft Bedrock!</p>
             
             <div class="info-dashboard">
-                <div class="info-card">
+                <div class="info-card" onclick="copyToClipboard('103.116.52.8', this)" title="Nhấn để copy">
                     <span class="info-label">IP ADDRESS</span>
                     <span class="info-value pixel-font hacker-text aurora-text-animate" data-value="103.116.52.8">103.116.52.8</span>
+                    <span class="copy-toast">Đã chép!</span>
                 </div>
                 <div class="info-divider"></div>
-                <div class="info-card">
+                <div class="info-card" onclick="copyToClipboard('19132', this)" title="Nhấn để copy">
                     <span class="info-label">PORT</span>
                     <span class="info-value pixel-font hacker-text aurora-text-animate" data-value="19132">19132</span>
+                    <span class="copy-toast">Đã chép!</span>
                 </div>
             </div>
 
@@ -118,25 +120,58 @@
     </div>
 
     <script>
-        // Hiệu ứng "Hacker" nhảy số liên tục không bao giờ dừng (Giấu IP/Port thật)
+        // Hiệu ứng "Hacker" dịch mã nhảy số (Hiện lại số thật sau vài giây)
         const letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*";
         const targets = document.querySelectorAll('.hacker-text');
 
-        function scrambleForever(element) {
-            const length = element.dataset.value.length;
+        function scramble(element) {
+            let iterations = 0;
+            const originalText = element.dataset.value;
             
-            setInterval(() => {
-                let randomText = "";
-                for (let i = 0; i < length; i++) {
-                    randomText += letters[Math.floor(Math.random() * letters.length)];
+            clearInterval(element.interval);
+            
+            element.interval = setInterval(() => {
+                element.innerText = originalText.split("").map((letter, index) => {
+                    if(index < iterations) {
+                        return originalText[index]; // Ký tự đã giải mã
+                    }
+                    // Ký tự đang bị nhảy loạn
+                    return letters[Math.floor(Math.random() * letters.length)];
+                }).join("");
+                
+                if(iterations >= originalText.length) {
+                    clearInterval(element.interval);
                 }
-                element.innerText = randomText;
-            }, 40); // Tốc độ nhảy số cực nhanh
+                
+                iterations += 1 / 3; // Tốc độ giải mã
+            }, 40);
         }
 
         targets.forEach(target => {
-            scrambleForever(target);
+            // Chạy hiệu ứng khi tải trang
+            setTimeout(() => scramble(target), 500);
+            
+            // Chạy hiệu ứng khi đưa chuột vào khu vực chứa text
+            target.parentElement.addEventListener('mouseenter', () => scramble(target));
         });
+
+        // Hàm Copy vào Clipboard
+        function copyToClipboard(text, cardElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = cardElement.querySelector('.copy-toast');
+                toast.classList.add('show');
+                
+                // Hiệu ứng sóng khi click
+                cardElement.style.transform = 'scale(0.95)';
+                setTimeout(() => cardElement.style.transform = '', 150);
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                console.error("Lỗi khi copy: ", err);
+            });
+        }
 
         // Xử lý sự kiện "Khám Phá", Sóng Xung Kích và Phát Nhạc
         const btnExplore = document.getElementById('btnExplore');

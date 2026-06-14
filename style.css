@@ -276,6 +276,7 @@ body {
     top: 0; left: -100%; width: 50%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
     animation: shine 4s infinite;
+    pointer-events: none;
 }
 
 @keyframes shine { 100% { left: 200%; } }
@@ -285,6 +286,40 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.info-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.02);
+}
+
+.copy-toast {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(16, 185, 129, 0.9);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, top 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    z-index: 10;
+}
+
+.copy-toast.show {
+    opacity: 1;
+    top: -35px;
 }
 
 .info-divider {

@@ -460,21 +460,26 @@ body {
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     color: #fff;
-    background: transparent;
-    border: 2px solid rgba(168, 85, 247, 0.8);
+    /* Hiệu ứng kính mờ (Frosted Glass) */
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Đổi viền sang màu xanh Cyan để nổi bật trên nền lưới tím */
+    border: 2px solid rgba(14, 165, 233, 0.9);
     border-radius: 50px;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 4px;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), inset 0 0 15px rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 25px rgba(14, 165, 233, 0.5), inset 0 0 15px rgba(14, 165, 233, 0.4);
     transition: all 0.3s ease;
     z-index: 2;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 .btn-explore:hover {
-    background: rgba(168, 85, 247, 0.2);
-    box-shadow: 0 0 40px rgba(168, 85, 247, 0.9), inset 0 0 25px rgba(168, 85, 247, 0.8);
+    background: rgba(14, 165, 233, 0.25);
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.9), inset 0 0 25px rgba(14, 165, 233, 0.8);
     transform: scale(1.05);
 }
 

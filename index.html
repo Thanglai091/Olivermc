@@ -27,6 +27,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Audio element (Nhạc BGM) -->
+    <audio id="bgMusic" loop>
+        <source src="bgm.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Màn hình Intro: Nút Khám Phá & Sóng Xung Kích -->
+    <div id="introOverlay" class="intro-overlay">
+        <button id="btnExplore" class="btn-explore">KHÁM PHÁ</button>
+        <div id="shockwave" class="shockwave"></div>
+    </div>
+
     <!-- Deep Aurora Background -->
     <div class="aurora-container">
         <div class="aurora-blob aurora-1"></div>
@@ -37,7 +48,7 @@
     <!-- Floating Moving Stars Overlay -->
     <div class="stars-overlay"></div>
 
-    <div class="container">
+    <div class="container" id="mainContainer" style="opacity: 0; pointer-events: none; transition: opacity 2s ease;">
         <div class="glass-panel">
             <div class="status-badge">
                 <span class="status-dot"></span>
@@ -121,6 +132,35 @@
 
         targets.forEach(target => {
             scrambleForever(target);
+        });
+
+        // Xử lý sự kiện "Khám Phá", Sóng Xung Kích và Phát Nhạc
+        const btnExplore = document.getElementById('btnExplore');
+        const introOverlay = document.getElementById('introOverlay');
+        const shockwave = document.getElementById('shockwave');
+        const mainContainer = document.getElementById('mainContainer');
+        const bgMusic = document.getElementById('bgMusic');
+
+        btnExplore.addEventListener('click', () => {
+            // Phát nhạc (nếu trình duyệt cho phép sau khi tương tác)
+            bgMusic.volume = 0.5; // Đặt âm lượng 50%
+            bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
+
+            // Kích hoạt hiệu ứng sóng xung kích
+            shockwave.classList.add('active');
+            
+            // Ẩn nút Khám phá ngay lập tức
+            btnExplore.style.opacity = '0';
+            btnExplore.style.pointerEvents = 'none';
+
+            // Đợi sóng xung kích lan ra rồi mới hiện giao diện web chính
+            setTimeout(() => {
+                introOverlay.style.opacity = '0';
+                introOverlay.style.pointerEvents = 'none';
+                
+                mainContainer.style.opacity = '1';
+                mainContainer.style.pointerEvents = 'all';
+            }, 600); // Đợi 0.6s sau tiếng nổ câm
         });
     </script>
 </body>
